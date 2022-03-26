@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router'
-import { AppContext, useApp } from '../Contex/AppContext'
+import { Navigate } from 'react-router'
+import { useApp } from '../Contex/AppContext'
 
 const PrivateRoute=({ children })=> {
     const {user} =useApp()

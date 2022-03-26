@@ -1,7 +1,8 @@
 import {useState,useEffect} from 'react'
 import { useApp } from '../Contex/AppContext'
-import { auth} from '../FIrebase/config'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import { auth,db} from '../FIrebase/config'
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
+import { doc, setDoc,Timestamp } from 'firebase/firestore'
 
 
 export const useSignUp =()=>{
@@ -11,24 +12,45 @@ export const useSignUp =()=>{
     const [isPending ,setIsPending]=useState(null)
     const {dispatch}=useApp()
 
-    const signup = async (email,password)=>{
+    const signup = async (email,password,displayName)=>{
         setErr(null)
         setIsPending(true)
          // signup user
-          const res =  await createUserWithEmailAndPassword(auth,email,password)
+
+           await createUserWithEmailAndPassword(auth,email,password)
           .then((res)=>{
-              setIsPending(false)
               dispatch({type:"LOGIN",payload:res.user})
+
+               updateProfile(res.user,{
+                displayName
+              })
+              setDoc(doc(db,'users',res.user.uid),{
+                uid:res.user.uid,
+                name:displayName,
+                email:res.user.email,
+                createAt:Timestamp.fromDate(new Date()),
+                isOnline:true
+              })
+
+
+              if(!isCancel){
+                setIsPending(false)
+                setErr(null)
+              }
           })
           .catch((err)=>{
-              setIsPending(false)
-              setErr(err)
+            if(!isCancel){
+                // console.log(error.message)
+                setErr(err.message)
+                setIsPending(false)
+
+            }
           })
      
     }
-    // useEffect(() => {
-    // return () => setIsCancel(true)
-    // }, [])
+    useEffect(() => {
+    return () => setIsCancel(true)
+    }, [])
     
     return {err ,isPending ,signup}
 

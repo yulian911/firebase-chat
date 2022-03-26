@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react"
-import { db} from "../firebase/config"
+import { db} from "../FIrebase/config"
 import { collection ,onSnapshot,query,where } from "firebase/firestore"
 
 export const useCollection = (c,_q) => {
@@ -37,7 +37,7 @@ export const useCollection = (c,_q) => {
     // unsubscribe on unmount
     return () => unsubscribe()
 
-  }, [c])
+  }, [c,q])
 
   return { documents, error }
 }

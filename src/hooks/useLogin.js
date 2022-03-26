@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 export const useLogin = () => {
   const [err, setErr] = useState(null);
   const { dispatch } = useApp();
+  const [isCancel ,setIsCancel]=useState(false)
   const [isPending, setIsPending] = useState(false);
 
   const login = (email, password) => {
@@ -13,15 +14,26 @@ export const useLogin = () => {
     setIsPending(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        // console.log("user logged in", res.user)
         dispatch({ type: "LOGIN", payload: res.user });
-        setIsPending(false);
+        if(!isCancel){
+          setErr(err.message)
+          setIsPending(false)
+      }
       })
       .catch((err) => {
-        setErr(err.message);
-        setIsPending(false);
+        if(!isCancel){
+          setErr(err.message)
+          setIsPending(false)
+
+      }
       });
   };
+
+  useEffect(() => {
+        
+    return () => setIsCancel(true)
+  
+}, [])
 
   return { err, login, isPending };
 };

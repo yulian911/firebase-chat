@@ -13,9 +13,9 @@ const SignUp = () => {
   const{err ,isPending ,signup}=useSignUp()
 
 
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
     e.preventDefault()
-    signup(email,password,displayName)
+    await signup(email,password,displayName)
     setEmail("")
     setDisplayName('')
     setPassword('')

@@ -1,27 +1,29 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, serverTimestamp } from "firebase/firestore";
+import {  initializeFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDj6YTByyyEGXrhho7jvepCUu3gqAhxHA4",
-  authDomain: "firabesa-chat.firebaseapp.com",
-  projectId: "firabesa-chat",
-  storageBucket: "firabesa-chat.appspot.com",
-  messagingSenderId: "803905242964",
-  appId: "1:803905242964:web:3fe4ea42b0ac82343d6ac1",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_API_AUTH,
+  databaseURL: process.env.REACT_APP_API_DATABASE,
+  projectId: process.env.REACT_APP_API_ID,
+  storageBucket: process.env.REACT_APP_API_STORAGE,
+  messagingSenderId: process.env.REACT_APP_API_MESSAG,
+  appId: process.env.REACT_APP_API_APPID
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const app =initializeApp(firebaseConfig);
 
 //init services
-const db = getFirestore();
+const db = initializeFirestore(app, {
+  useFetchStreams:false,
+});
 
-const auth = getAuth();
+const auth = getAuth(app);
 //timestamp firebase
-const timestamp = serverTimestamp();
 
-const storage = getStorage();
+const storage = getStorage(app);
 
 export { db, auth, storage };

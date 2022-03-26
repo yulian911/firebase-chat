@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
+
 import "./App.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, } from "react-router-dom";
 import SignUp from "./Pages/SignUp/SignUp";
 import Navigation from "./Conponents/Navigation";
 import PrivateRoute from "./Conponents/PrivateRoute";
@@ -11,12 +11,13 @@ import PublicRoute from "./Conponents/PublicRoute";
 import Profile from "./Pages/Profile/Profile";
 
 function App() {
-  const { user, authIsReady } = useApp();
+  const { authIsReady } = useApp();
   return (
     <div className="App">
       {authIsReady && (
         <BrowserRouter>
           <Navigation />
+  
           <Routes>
             <Route
               exact
@@ -53,6 +54,8 @@ function App() {
               }
             />
           </Routes>
+    
+         
         </BrowserRouter>
       )}
     </div>

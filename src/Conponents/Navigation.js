@@ -25,7 +25,7 @@ const Navigation = () => {
           <li key={`link-${item}`}>
             {user && (
               <>
-                <div />
+                {/* <div /> */}
                 <NavLink
                   className={({ isActive }) => (isActive ? "active" : null)}
                   to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
@@ -81,7 +81,7 @@ const Nav = styled.div`
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  position: fixed;
+  /* position: fixed; */
   z-index: 2;
 `;
 const Logo = styled.div`
@@ -120,6 +120,7 @@ const NavLinks = styled.ul`
       flex-direction: column;
       text-transform: uppercase;
       font-weight: 500;
+      color: white;
 
       transition: all 0.3s ease-in-out;
 
@@ -130,7 +131,7 @@ const NavLinks = styled.ul`
     .active {
       /* border-radius: 15px; */
       border-width: 1px;
-      background-color: #6b7688;
+      /* background-color: #6b7688; */
       /* padding:5px; */
       color: white;
 
