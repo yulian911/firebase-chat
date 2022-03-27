@@ -8,7 +8,13 @@ import UserProfile from "./../../Conponents/UserProfile";
 const Profile = () => {
   const {user} =useApp()
 
-  const{documents:users}=useCollection('users', ["uid","==" ,user.uid],null)
+  const{documents:users,isPending}=useCollection('users', ["uid","==" ,user.uid],null)
+
+if(isPending){
+  return <Container>
+    <p>Loading..</p>
+  </Container>
+}
 
   return user?(
     <Container>

@@ -13,7 +13,7 @@ const Home = () => {
 
 
 
-  const {user} =useApp()
+  const {user ,show} =useApp()
   const user1 =user.uid
   const {documents:users}=useCollection('users',['uid','not-in',[user1]])
   const [chat,setChat]=useState('')
@@ -79,12 +79,13 @@ const Home = () => {
     })
     
     setText('')
+    setImg('')
   }
 
   return (
 
     <div className="home_container">
-      <div className="users_container">
+      <div className="users_container" style={{display:show? 'block' :'none'}}>
         {users && users.map((el) => (
           <User
             key={el.uid}

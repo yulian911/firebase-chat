@@ -5,6 +5,7 @@ import { collection ,onSnapshot,query,where } from "firebase/firestore"
 export const useCollection = (c,_q) => {
   const [documents, setDocuments] = useState(null)
   const [error, setError] = useState(null)
+  const [isPending, setIsPending] = useState(false)
 
   // if we don't use a ref --> infinite loop in useEffect
   // _query is an array and is "different" on every function call
@@ -12,6 +13,7 @@ export const useCollection = (c,_q) => {
   // const order =useRef(_order).current
 
   useEffect(() => {
+    setIsPending(true)
     let ref = collection(db,c)
 
     // /po userze pobiera
@@ -27,10 +29,12 @@ export const useCollection = (c,_q) => {
       });
       
       // update state
+      setIsPending(false)
       setDocuments(results)
       setError(null)
     }, error => {
       console.log(error)
+      setIsPending(false)
       setError('could not fetch the data')
     })
 
@@ -39,5 +43,5 @@ export const useCollection = (c,_q) => {
 
   }, [c,q])
 
-  return { documents, error }
+  return { documents, error ,isPending}
 }

@@ -2,20 +2,29 @@
   max-width: 360px;
   margin: 60px auto;
   padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 15px 25px rgba(0,0, 0, 0.5);
 }
-.login-form label {
+/* .login-form label {
   display: block;
   margin: 30px auto;
-}
+} */
 .login-form span {
   display: block;
   margin-bottom: 6px;
 }
 .login-form input {
-  padding: 8px 6px;
-  font-size: 1em;
-  color: #777;
   width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color:#fff;
+  margin-bottom: 30px;
+  border:none;
+  border-bottom :1px solid #fff;
+  outline: none;
+
 }
 .btn {
   background: none;

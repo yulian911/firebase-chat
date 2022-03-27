@@ -8,14 +8,14 @@ import { useApp } from "../Contex/AppContext";
 
 const Navigation = () => {
   const { logout } = useLogout();
-  const { user } = useApp();
+  const { user ,setShow,show} = useApp();
 
   return (
     <Nav>
       <Logo>
         <button
           className="btn"
-          //  onClick={()=>setShow(!show)}
+           onClick={()=>setShow(!show)}
         >
           <GiHamburgerMenu />
         </button>

@@ -1,4 +1,4 @@
-import React ,{createContext ,useContext,useReducer,useEffect} from 'react'
+import React ,{createContext ,useContext,useReducer,useEffect, useState} from 'react'
 import { auth} from '../FIrebase/config'
 import {onAuthStateChanged} from 'firebase/auth'
 
@@ -35,6 +35,7 @@ export const AppProvider= ({children}) => {
       user:null,
       authIsReady:false
   })
+  const[show ,setShow]=useState(false)
 
   useEffect(() => {
     ///sprawdza czy jest user 
@@ -50,6 +51,8 @@ export const AppProvider= ({children}) => {
     return {
         ...state,
         dispatch,
+        show,
+        setShow
      
      
     };
