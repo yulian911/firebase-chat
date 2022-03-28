@@ -1,6 +1,5 @@
-
 import "./App.css";
-import { BrowserRouter, Route, Routes, } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./Pages/SignUp/SignUp";
 import Navigation from "./Conponents/Navigation";
 import PrivateRoute from "./Conponents/PrivateRoute";
@@ -9,6 +8,7 @@ import Login from "./Pages/Login/Login";
 import { useApp } from "./Contex/AppContext";
 import PublicRoute from "./Conponents/PublicRoute";
 import Profile from "./Pages/Profile/Profile";
+import Gallery from "./Pages/Gallery/Gallery";
 
 function App() {
   const { authIsReady } = useApp();
@@ -17,7 +17,7 @@ function App() {
       {authIsReady && (
         <BrowserRouter>
           <Navigation />
-  
+
           <Routes>
             <Route
               exact
@@ -53,9 +53,15 @@ function App() {
                 </PrivateRoute>
               }
             />
+            <Route
+              path="/gallery"
+              element={
+                <PrivateRoute>
+                  <Gallery />
+                </PrivateRoute>
+              }
+            />
           </Routes>
-    
-         
         </BrowserRouter>
       )}
     </div>

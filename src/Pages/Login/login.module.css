@@ -5,7 +5,7 @@
   background: rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
   border-radius: 10px;
-  box-shadow: 0 15px 25px rgba(0,0, 0, 0.5);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
 }
 /* .login-form label {
   display: block;
@@ -19,12 +19,11 @@
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
-  color:#fff;
+  /* color:#fff; */
   margin-bottom: 30px;
-  border:none;
-  border-bottom :1px solid #fff;
+  border: none;
+  border-bottom: 1px solid #fff;
   outline: none;
-
 }
 .btn {
   background: none;
