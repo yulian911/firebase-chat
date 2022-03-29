@@ -18,7 +18,7 @@ const ProgressBar = ({ file, setFile }) => {
       initial={{ width: 0 }}
       animate={{ width: progress + "%" }}
     >
-      ProgressBar
+    
     </motion.div>
   );
 };
