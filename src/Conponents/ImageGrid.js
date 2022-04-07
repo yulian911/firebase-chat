@@ -3,7 +3,7 @@ import { useCollection } from "./../hooks/useCollection";
 import { motion } from "framer-motion";
 
 const ImageGrid = ({ styles, setSelected }) => {
-  const { documents } = useCollection("gallery");
+  const { documents } = useCollection("gallery",null, ["createdAt",'desc']);
   return (
     <div className={styles.img_grid}>
       {documents &&
