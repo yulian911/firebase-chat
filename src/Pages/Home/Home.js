@@ -15,6 +15,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { motion } from "framer-motion";
 import User from "../../Conponents/User";
 import MessageForm from "../../Conponents/MessageForm";
 import { db, storage } from "../../FIrebase/config";
@@ -98,7 +99,12 @@ const Home = () => {
   };
 
   return (
-    <div className="home_container">
+    <motion.div
+      className="home_container"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+    >
       <div
         className="users_container"
         style={{ display: show ? "block" : "none" }}
@@ -138,7 +144,7 @@ const Home = () => {
           <h3 className="no_conv">Select a user to start conversation</h3>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

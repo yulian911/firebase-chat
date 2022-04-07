@@ -1,14 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignUp from "./Pages/SignUp/SignUp";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+
 import Navigation from "./Conponents/Navigation";
-import PrivateRoute from "./Conponents/PrivateRoute";
-import Home from "./Pages/Home/Home";
-import Login from "./Pages/Login/Login";
+
 import { useApp } from "./Contex/AppContext";
-import PublicRoute from "./Conponents/PublicRoute";
-import Profile from "./Pages/Profile/Profile";
-import Gallery from "./Pages/Gallery/Gallery";
+
+import AnimatedRoutes from "./Conponents/AnimatedRoutes";
 
 function App() {
   const { authIsReady } = useApp();
@@ -17,51 +14,7 @@ function App() {
       {authIsReady && (
         <BrowserRouter>
           <Navigation />
-
-          <Routes>
-            <Route
-              exact
-              path="/login"
-              element={
-                <PublicRoute>
-                  <Login />
-                </PublicRoute>
-              }
-            />
-            <Route
-              exact
-              path="/signup"
-              element={
-                <PublicRoute>
-                  <SignUp />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/gallery"
-              element={
-                <PrivateRoute>
-                  <Gallery />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
+          <AnimatedRoutes />
         </BrowserRouter>
       )}
     </div>
